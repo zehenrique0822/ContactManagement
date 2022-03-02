@@ -3,8 +3,9 @@
 @section('title', 'Adição de tarefas')
 
 @section('content') 
-    <a href="{{ route('list' )}}">Voltar</a>
-    <h1>Adição</h1>
+    <div class="container">
+    <a class="button" href="{{ route('list' )}}">Voltar</a>
+    <h1>Cadastro de Contato</h1>
     @if($errors->any())
             @slot('type')
             Aviso:
@@ -22,6 +23,7 @@
         <label>Email:</label>
         <input type="email" name="email" required>        
         <input type="submit" value="Adicionar">
-        <br><p>Adicione um novo cadastro, caso o contato ou email já exista será redirecionado de volta!</p>
+        <br><p id="alert">Adicione um novo cadastro, caso o contato ou email já exista será redirecionado de volta!</p>
     </form>
+    </div>
 @endsection

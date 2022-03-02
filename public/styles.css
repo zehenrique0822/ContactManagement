@@ -1,0 +1,46 @@
+body {
+    background-color:#E5E5E5;
+    font-family: 'Montserrat', sans-serif;
+}
+header, footer {
+    text-align: center;
+}
+footer{
+    font-size: 50px;
+}
+h1 {
+    font-size: 50px;
+}
+.container {
+    width: 100%;
+    text-align: center;   
+    display: flex; 
+    flex-direction: column;    
+}
+.tables {
+    color:black;
+    margin: auto;
+    font-size: 25px;
+    font-weight: bold;
+    border-collapse: collapse;
+}
+.tables, td {
+    border: 2px solid black;
+    padding: 5px;
+}
+
+.button {
+    font-size: 25px;
+}
+
+label, input {
+    font-size: 20px;
+}
+
+#alert {
+    color: red;
+    font-size: 20px;
+}
+.detail {
+    font-size: 20px;    
+}

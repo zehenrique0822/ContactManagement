@@ -3,7 +3,8 @@
 @section('title', 'Adição de tarefas')
 
 @section('content') 
-    <a href="{{ route('list' )}}">Voltar</a>
+    <div class="container">
+    <a class="button" href="{{ route('list' )}}">Voltar</a>
     <h1>Edição de Contato</h1>
     @if($errors->any())
     @slot('type')
@@ -23,4 +24,5 @@
         <input type="text" name="email" value="{{ $data->email }}" required>        
         <input type="submit" value="Alterar">
     </form>
+    </div>
 @endsection
