@@ -5,26 +5,23 @@
 @section('content') 
     <a href="{{ route('list' )}}">Voltar</a>
     <h1>Adição</h1>
-{{-- 
     @if($errors->any())
-        <x-alert>
             @slot('type')
             Aviso:
             @endslot
             @foreach($errors->all() as $error)
                 {{ $error }} <br/>
-            @endforeach            
-        </x-alert>
-    @endif --}}
-
+            @endforeach     
+    @endif
     <form method="POST"> 
         @csrf
         <label>Nome:</label>
-        <input type="text" name="name">        
+        <input type="text" name="name" minlength="5" required>        
         <label>Contato:</label>
-        <input type="text" name="contact">
+        <input type="text" name="contact" minlength="9" required>
         <label>Email:</label>
-        <input type="text" name="email">        
+        <input type="email" name="email" required>        
         <input type="submit" value="Adicionar">
+        <br><p>Adicione um novo cadastro, caso o contato ou email já exista será redirecionado de volta!</p>
     </form>
 @endsection

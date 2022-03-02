@@ -33,22 +33,32 @@ class ContactsController extends Controller
 
     public function addAction(Request $request) {
         
-        // $request->validate([
-        //     'con' => ['required', 'string']
-        // ]);
+        $request->validate([
+            'name' => ['required', 'string', 'min: 5'],
+            'contact' => ['required', 'string', 'min: 9'],
+            'email' => ['required', 'string','email']
+        ]);
 
         $name = $request->input('name');
         $contact = $request->input('contact');
         $email = $request->input('email');
+
+        $validated = DB::select('SELECT * FROM contacts WHERE contact =:contact OR email =:email',[
+            'contact' => $contact,
+            'email' => $email
+        ]);
+
+        if(count($validated) <=0) {
 
         DB::insert('INSERT INTO contacts (name, contact, email) VALUES (:name, :contact, :email)', [
             'name' => $name,
             'contact' => $contact,
             'email' => $email
         ]);
-
-        return redirect()->route('list');                 
-
+        return redirect()->route('list'); 
+        } else {
+        return redirect()->route('add');
+        }
     }
 
     public function edit($id) {
@@ -68,15 +78,21 @@ class ContactsController extends Controller
     }
     
     public function editAction(Request $request,$id) {
+
+        $edit = DB::select('SELECT * FROM contacts WHERE id =:id',[
+            'id' => $id
+        ]);
     
-        // $request->validate([
-        //     'name' => ['required', 'string']
-        // ]);
+        $request->validate([
+            'name' => ['required', 'string', 'min: 5'],
+            'contact' => ['required', 'string', 'min: 9'],
+            'email' => ['required', 'string','email']
+        ]);
 
         $name = $request->input('name');
         $contact = $request->input('contact');
         $email = $request->input('email');
-                        
+        
         DB::update('UPDATE contacts SET name = :name, contact = :contact, email = :email WHERE id = :id',[
             'id' => $id,
             'name' => $name,
